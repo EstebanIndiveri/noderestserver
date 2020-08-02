@@ -7,8 +7,8 @@ app.use(bodyparser.urlencoded({extended:true,}));
 app.use(bodyparser.json());
 app.use(require('./routes/usuario'));
 mongoose.set('useFindAndModify', false);
-
 require('dotenv').config({path:'process.env'})
+const port = process.env.PORT || 8080;
 
 mongoose.connect(
     process.env.DB_MONGO,
@@ -18,6 +18,6 @@ mongoose.connect(
     console.log('base de datos UP');
 });
 
-app.listen(process.env.PORT,()=>{
+app.listen(port,()=>{
     console.log('SERVER UP');
 });
