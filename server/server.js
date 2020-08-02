@@ -5,8 +5,13 @@ const app=express();
 const bodyparser=require('body-parser');
 app.use(bodyparser.urlencoded({extended:true,}));
 app.use(bodyparser.json());
-app.use(require('./routes/usuario'));
+
+//routes config global
+app.use(require('./routes/index'));
+
+
 mongoose.set('useFindAndModify', false);
+
 const port = process.env.PORT || 8080;
 
 require('dotenv').config({path:'process.env'})
