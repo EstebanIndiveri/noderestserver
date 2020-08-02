@@ -7,8 +7,9 @@ app.use(bodyparser.urlencoded({extended:true,}));
 app.use(bodyparser.json());
 app.use(require('./routes/usuario'));
 mongoose.set('useFindAndModify', false);
-require('dotenv').config({path:'process.env'})
 const port = process.env.PORT || 8080;
+
+require('dotenv').config({path:'process.env'})
 
 mongoose.connect(
     process.env.DB_MONGO,
