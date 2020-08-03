@@ -76,6 +76,27 @@ app.get('/productos/:id',(req,res)=>{
         });
     });
 });
+
+//search
+app.get('/productos/buscar/:termino',verificaToken,(req,res)=>{
+    let termino=req.params.termino;
+    let regex=new RegExp(termino,'i');
+    Producto.find({nombre:regex})
+    .populate('categoria','nombre')
+    .exec((err,productosDB)=>{
+        if(err){
+            return res.status(500).json({
+                ok:false,
+                err
+            });
+        };
+        return res.json({
+            ok:true,
+            productos:productosDB
+        })
+    })
+});
+
 app.post('/productos',verificaToken,(req,res)=>{
     // verificaToken
     //grabar user,categoria del listado
