@@ -2,6 +2,7 @@ require('./config/config');
 const express=require('express');
 const mongoose=require('mongoose');
 const app=express();
+const path=require('path');
 const bodyparser=require('body-parser');
 app.use(bodyparser.urlencoded({extended:true,}));
 app.use(bodyparser.json());
@@ -9,6 +10,8 @@ app.use(bodyparser.json());
 //routes config global
 app.use(require('./routes/index'));
 
+//carpeta public
+app.use(express.static(path.resolve(__dirname,'../public')));
 
 mongoose.set('useFindAndModify', false);
 
