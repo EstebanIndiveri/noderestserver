@@ -160,7 +160,8 @@ app.delete('/productos/:id',verificaToken,(req,res)=>{
         };
         return res.json({
             ok:true,
-            producto:productoDB
+            producto:productoDB,
+            message:'Producto eliminado'
         });
     });
 });
